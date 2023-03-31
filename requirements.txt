@@ -1,0 +1,4 @@
+dearpygui==1.8.0
+Django==4.1.5
+djangorestframework==3.14.0
+django-filter==22.1
