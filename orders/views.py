@@ -11,6 +11,7 @@ from rest_framework.viewsets import ModelViewSet, GenericViewSet
 
 from orders.models import Books, UserBookRelation
 from orders.serializers import BookSerializer, UserBookRelationSerializer, UserSerializer
+from .logic import set_rating
 from .logic_filter import BookFilter
 from .permissions import IsOwnerOrReadOnly
 
@@ -41,16 +42,15 @@ class BookViewSet(ModelViewSet):
 
 
 class UserBookRelationViewSet(UpdateModelMixin, GenericViewSet):
-    permission_classes = [IsAuthenticated]
+
     queryset = UserBookRelation.objects.all()
     serializer_class = UserBookRelationSerializer
     lookup_field = 'book'
-
+    permission_classes = [IsAuthenticated]
     def get_object(self):
         obj, _ = UserBookRelation.objects.get_or_create(user=self.request.user,
                                                         book=self.kwargs['book'])
         return obj
-
 
 def index_1(request):
     return render(request, 'index.html')

@@ -29,6 +29,7 @@ def set_rating(book):
     book.rating = book_rating
     book.save()
 
+
 """
 Работаю с этой функцией. Вообще aggregate выводит словарь, поэтому с помощью get достанем значение у ключа rating
 """
